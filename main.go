@@ -15,6 +15,12 @@ func main() {
 		return c.SendString("Hello, World!")
 	})
 
+	app.Get("/check", func(c fiber.Ctx) error {
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{
+			"status":  "success",
+			"message": "Server is running",
+		})
+	})
 	// Jalankan server di port 3000
 	log.Fatal(app.Listen(":3010"))
 }
