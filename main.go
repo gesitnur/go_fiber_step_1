@@ -35,9 +35,10 @@ func main() {
 	}
 	app := fiber.New()
 	app.Get("/check", func(c fiber.Ctx) error {
+		m := c.Queries()
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{
 			"status":  "200",
-			"message": "Demo server is working fine",
+			"message": m["message"],
 		})
 	})
 	routes.SetupRoutes(app)
