@@ -36,9 +36,13 @@ func main() {
 	app := fiber.New()
 	app.Get("/check", func(c fiber.Ctx) error {
 		m := c.Queries()
+		message := m["message"]
+		if message == "" {
+			message = "default"
+		}
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{
 			"status":  "200",
-			"message": m["message"],
+			"message": message,
 		})
 	})
 	routes.SetupRoutes(app)
