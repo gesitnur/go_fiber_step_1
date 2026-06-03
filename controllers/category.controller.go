@@ -54,6 +54,7 @@ func FindNotes(c fiber.Ctx) error {
 	offset := (intPage - 1) * intLimit
 
 	var notes []models.Category
+	// results := initializers.DB.Limit(intLimit).Offset(offset).Where("name = ?", "Transportasi").Find(&notes)
 	results := initializers.DB.Limit(intLimit).Offset(offset).Find(&notes)
 	if results.Error != nil {
 		return c.Status(fiber.StatusBadGateway).JSON(fiber.Map{"status": "error", "message": results.Error})
